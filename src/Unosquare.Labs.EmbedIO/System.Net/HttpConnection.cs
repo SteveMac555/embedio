@@ -458,10 +458,6 @@ using System.Security.Cryptography.X509Certificates;
             {
                 _sock.Dispose();
             }
-            catch
-            {
-                // ignored
-            }
             finally
             {
                 _sock = null;
