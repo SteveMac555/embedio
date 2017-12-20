@@ -161,7 +161,7 @@ using System.Security.Cryptography.X509Certificates;
                 var data = await Stream.ReadAsync(_buffer, 0, BufferSize);
                 await OnReadInternal(data);
             }
-            catch
+            catch (Exception)
             {
                 _timer.Change(Timeout.Infinite, Timeout.Infinite);
                 CloseSocket();
@@ -225,6 +225,10 @@ using System.Security.Cryptography.X509Certificates;
             try
             {
                 s?.Shutdown(SocketShutdown.Both);
+
+#if NET46
+                s?.Close();
+#endif
             }
             catch
             {
@@ -457,6 +461,10 @@ using System.Security.Cryptography.X509Certificates;
             try
             {
                 _sock.Dispose();
+            }
+            catch
+            {
+                Console.WriteLine("yes");
             }
             finally
             {
