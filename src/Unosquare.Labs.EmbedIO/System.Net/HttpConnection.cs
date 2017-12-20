@@ -224,11 +224,7 @@ using System.Security.Cryptography.X509Certificates;
 
             try
             {
-                s?.Shutdown(SocketShutdown.Both);
-
-#if NET46
-                s?.Close();
-#endif
+                s?.Shutdown(SocketShutdown.Both);                
             }
             catch
             {
@@ -464,7 +460,7 @@ using System.Security.Cryptography.X509Certificates;
             }
             catch
             {
-                Console.WriteLine("yes");
+                // ignored
             }
             finally
             {
